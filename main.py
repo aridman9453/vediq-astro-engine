@@ -42,10 +42,3 @@ def supabase_test():
             "status": "error",
             "message": str(e)
         }
-            "status": "connected"
-        }
-    except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
