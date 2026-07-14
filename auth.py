@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from pydantic import BaseModel
 from supabase_client import supabase
 
@@ -61,6 +61,19 @@ def login(data: LoginRequest):
             "success": True,
             "session": response.session,
             "user": response.user
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post("/logout")
+def logout():
+    try:
+        supabase.auth.sign_out()
+        return {
+            "success": True,
+            "message": "Logged out successfully"
         }
 
     except Exception as e:
