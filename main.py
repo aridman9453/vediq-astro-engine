@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from supabase_client import supabase
+
 app = FastAPI(title="vedIQ Astro Engine")
 
 app.add_middleware(
@@ -23,3 +25,15 @@ def health():
     return {
         "status": "healthy"
     }
+
+@app.get("/supabase-test")
+def supabase_test():
+    try:
+        return {
+            "status": "connected"
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
