@@ -1,0 +1,11 @@
+import os
+
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+JWT_SECRET = os.getenv("JWT_SECRET")
+
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
