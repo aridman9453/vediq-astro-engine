@@ -11,6 +11,11 @@ class SignupRequest(BaseModel):
     full_name: str
 
 
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+
 @router.get("/status")
 def auth_status():
     return {
@@ -35,6 +40,26 @@ def signup(data: SignupRequest):
 
         return {
             "success": True,
+            "user": response.user
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@router.post("/login")
+def login(data: LoginRequest):
+    try:
+        response = supabase.auth.sign_in_with_password(
+            {
+                "email": data.email,
+                "password": data.password
+            }
+        )
+
+        return {
+            "success": True,
+            "session": response.session,
             "user": response.user
         }
 
