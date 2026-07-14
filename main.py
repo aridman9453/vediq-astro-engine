@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from supabase_client import supabase
 from auth import router as auth_router
+from astrology import router as astrology_router
 
 app = FastAPI(title="vedIQ Astro Engine")
 
@@ -15,6 +16,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(astrology_router)
 
 @app.get("/")
 def root():
