@@ -29,7 +29,19 @@ def health():
 @app.get("/supabase-test")
 def supabase_test():
     try:
+        response = supabase.table("profiles").select("*").limit(1).execute()
+
         return {
+            "status": "connected",
+            "database": "ok",
+            "rows_returned": len(response.data)
+        }
+
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
             "status": "connected"
         }
     except Exception as e:
