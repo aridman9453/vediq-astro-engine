@@ -1,5 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+from supabase_client import supabase
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -19,8 +20,23 @@ def auth_status():
 
 @router.post("/signup")
 def signup(data: SignupRequest):
-    return {
-        "success": True,
-        "message": "Signup endpoint created",
-        "user": data
-    }
+    try:
+        response = supabase.auth.sign_up(
+            {
+                "email": data.email,
+                "password": data.password,
+                "options": {
+                    "data": {
+                        "full_name": data.full_name
+                    }
+                }
+            }
+        )
+
+        return {
+            "success": True,
+            "user": response.user
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
