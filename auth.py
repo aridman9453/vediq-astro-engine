@@ -78,15 +78,3 @@ def logout():
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-        @router.post("/forgot-password")
-def forgot_password(email: str):
-    try:
-        supabase.auth.reset_password_email(email)
-
-        return {
-            "success": True,
-            "message": "Password reset email sent"
-        }
-
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
