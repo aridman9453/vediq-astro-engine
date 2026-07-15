@@ -113,8 +113,15 @@ def generate_birth_chart(
 
     "ascendant": get_sign(ascendant),
 
-    "planets": {
+        "planets": {
         "Sun": get_sign(sun),
-        "Moon": get_sign(moon)
+        "Moon": get_sign(moon),
+        "Mercury": get_sign(mercury),
+        "Venus": get_sign(venus),
+        "Mars": get_sign(mars),
+        "Jupiter": get_sign(jupiter),
+        "Saturn": get_sign(saturn),
+        "Rahu": get_sign(rahu),
+        "Ketu": get_sign(ketu)
     }
 }
