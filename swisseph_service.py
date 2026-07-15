@@ -114,6 +114,7 @@ def generate_birth_chart(
     "Ketu": {
         **get_sign(ketu),
         "house": get_planet_house(ketu, house_longitudes)
-    }
+     }
 
+    }
 }
