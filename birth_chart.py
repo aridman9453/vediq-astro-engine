@@ -1,13 +1,17 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from swisseph_service import generate_birth_chart as calculate_birth_chart
 
-router = APIRouter(prefix="/birth-chart", tags=["Birth Chart"])
+router = APIRouter(
+    prefix="/birth-chart",
+    tags=["Birth Chart"]
+)
 
 
 class BirthChartRequest(BaseModel):
     name: str
-    date: str          # YYYY-MM-DD
-    time: str          # HH:MM
+    date: str
+    time: str
     latitude: float
     longitude: float
     timezone: float
@@ -21,16 +25,18 @@ def status():
 
 
 @router.post("/generate")
-def generate_birth_chart(data: BirthChartRequest):
+def generate(data: BirthChartRequest):
+
+    chart = calculate_birth_chart(
+        birth_date=data.date,
+        birth_time=data.time,
+        latitude=data.latitude,
+        longitude=data.longitude,
+        timezone=data.timezone
+    )
+
     return {
         "success": True,
-        "message": "Birth chart request received",
-        "data": {
-            "name": data.name,
-            "date": data.date,
-            "time": data.time,
-            "latitude": data.latitude,
-            "longitude": data.longitude,
-            "timezone": data.timezone
-        }
+        "name": data.name,
+        "chart": chart
     }
