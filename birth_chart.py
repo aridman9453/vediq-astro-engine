@@ -1,10 +1,16 @@
 from fastapi import APIRouter
-from schemas import BirthChartRequest
+from pydantic import BaseModel
 
-router = APIRouter(
-    prefix="/birth-chart",
-    tags=["Birth Chart"]
-)
+router = APIRouter(prefix="/birth-chart", tags=["Birth Chart"])
+
+
+class BirthChartRequest(BaseModel):
+    name: str
+    date: str          # YYYY-MM-DD
+    time: str          # HH:MM
+    latitude: float
+    longitude: float
+    timezone: float
 
 
 @router.get("/status")
@@ -15,16 +21,16 @@ def status():
 
 
 @router.post("/generate")
-def generate_birth_chart(request: BirthChartRequest):
+def generate_birth_chart(data: BirthChartRequest):
     return {
         "success": True,
-        "message": "Birth details received successfully",
+        "message": "Birth chart request received",
         "data": {
-            "name": request.name,
-            "birth_date": request.birth_date,
-            "birth_time": request.birth_time,
-            "latitude": request.latitude,
-            "longitude": request.longitude,
-            "timezone": request.timezone
+            "name": data.name,
+            "date": data.date,
+            "time": data.time,
+            "latitude": data.latitude,
+            "longitude": data.longitude,
+            "timezone": data.timezone
         }
     }
