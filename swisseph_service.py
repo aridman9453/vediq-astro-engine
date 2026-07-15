@@ -69,4 +69,5 @@ return {
     "Saturn": get_sign(saturn),
     "Rahu": get_sign(rahu),
     "Ketu": get_sign(ketu)
+    }
 }
