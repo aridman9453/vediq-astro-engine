@@ -53,7 +53,7 @@ jupiter = swe.calc_ut(jd, swe.JUPITER)[0][0]
 saturn = swe.calc_ut(jd, swe.SATURN)[0][0]
 rahu = swe.calc_ut(jd, swe.MEAN_NODE)[0][0]
 ketu = (rahu + 180) % 360
-    return {
+return {
     "success": True,
     "julian_day": round(jd, 6),
 
