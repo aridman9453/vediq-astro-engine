@@ -1,6 +1,7 @@
 import swisseph as swe
 import os
 from datetime import datetime
+from planetary_positions import get_sign
 
 EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
@@ -47,10 +48,14 @@ def generate_birth_chart(
 
     sun = swe.calc_ut(jd, swe.SUN)[0][0]
     moon = swe.calc_ut(jd, swe.MOON)[0][0]
-
     return {
-        "julian_day": jd,
-        "ascendant": round(ascendant, 6),
-        "sun_longitude": round(sun, 6),
-        "moon_longitude": round(moon, 6)
+    "success": True,
+    "julian_day": round(jd, 6),
+
+    "ascendant": get_sign(ascendant),
+
+    "planets": {
+        "Sun": get_sign(sun),
+        "Moon": get_sign(moon)
     }
+}
