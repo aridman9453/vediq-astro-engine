@@ -52,6 +52,14 @@ def generate_birth_chart(
 
     sun = swe.calc_ut(jd, swe.SUN)[0][0]
     moon = swe.calc_ut(jd, swe.MOON)[0][0]
+    mercury = swe.calc_ut(jd, swe.MERCURY)[0][0]
+    venus = swe.calc_ut(jd, swe.VENUS)[0][0]
+    mars = swe.calc_ut(jd, swe.MARS)[0][0]
+    jupiter = swe.calc_ut(jd, swe.JUPITER)[0][0]
+    saturn = swe.calc_ut(jd, swe.SATURN)[0][0]
+
+    rahu = swe.calc_ut(jd, swe.MEAN_NODE)[0][0]
+    ketu = (rahu + 180) % 360
 
     return {
         "success": True,
@@ -63,22 +71,49 @@ def generate_birth_chart(
 
         "planets": {
 
-            "Sun": {
-                **get_sign(sun),
-                "house": get_planet_house(
-                    sun,
-                    house_longitudes
-                )
-            },
+    "Sun": {
+        **get_sign(sun),
+        "house": get_planet_house(sun, house_longitudes)
+    },
 
-            "Moon": {
-                **get_sign(moon),
-                "house": get_planet_house(
-                    moon,
-                    house_longitudes
-                )
-            }
+    "Moon": {
+        **get_sign(moon),
+        "house": get_planet_house(moon, house_longitudes)
+    },
 
-        }
+    "Mercury": {
+        **get_sign(mercury),
+        "house": get_planet_house(mercury, house_longitudes)
+    },
 
+    "Venus": {
+        **get_sign(venus),
+        "house": get_planet_house(venus, house_longitudes)
+    },
+
+    "Mars": {
+        **get_sign(mars),
+        "house": get_planet_house(mars, house_longitudes)
+    },
+
+    "Jupiter": {
+        **get_sign(jupiter),
+        "house": get_planet_house(jupiter, house_longitudes)
+    },
+
+    "Saturn": {
+        **get_sign(saturn),
+        "house": get_planet_house(saturn, house_longitudes)
+    },
+
+    "Rahu": {
+        **get_sign(rahu),
+        "house": get_planet_house(rahu, house_longitudes)
+    },
+
+    "Ketu": {
+        **get_sign(ketu),
+        "house": get_planet_house(ketu, house_longitudes)
     }
+
+}
