@@ -1,3 +1,4 @@
+from house_engine import get_houses
 import swisseph as swe
 import os
 from datetime import datetime
@@ -112,6 +113,8 @@ def generate_birth_chart(
     "julian_day": round(jd, 6),
 
     "ascendant": get_sign(ascendant),
+
+    "houses": get_houses(houses),
 
         "planets": {
         "Sun": get_sign(sun),
