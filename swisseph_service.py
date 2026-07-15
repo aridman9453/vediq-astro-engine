@@ -6,6 +6,7 @@ import swisseph as swe
 from planetary_positions import get_sign
 from house_engine import get_houses
 from planet_house_mapper import get_planet_house
+from house_lords import get_house_lords
 
 EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
@@ -68,6 +69,8 @@ def generate_birth_chart(
         "ascendant": get_sign(ascendant),
 
         "houses": get_houses(houses),
+
+"house_lords": get_house_lords(get_houses(houses)),
 
         "planets": {
 
