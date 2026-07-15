@@ -1,10 +1,25 @@
-from fastapi import APIRouter
+ZODIAC_SIGNS = [
+    "Aries",
+    "Taurus",
+    "Gemini",
+    "Cancer",
+    "Leo",
+    "Virgo",
+    "Libra",
+    "Scorpio",
+    "Sagittarius",
+    "Capricorn",
+    "Aquarius",
+    "Pisces"
+]
 
-router = APIRouter(prefix="/planetary-positions", tags=["Planetary Positions"])
 
+def get_sign(longitude):
+    sign = int(longitude // 30)
+    degree = longitude % 30
 
-@router.get("/status")
-def status():
     return {
-        "status": "Planetary Position Engine Ready"
+        "sign": ZODIAC_SIGNS[sign],
+        "degree": round(degree, 4),
+        "longitude": round(longitude, 4)
     }
