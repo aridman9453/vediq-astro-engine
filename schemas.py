@@ -10,3 +10,12 @@ class SignupRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
+
+
+class BirthChartRequest(BaseModel):
+    name: str
+    birth_date: str
+    birth_time: str
+    latitude: float
+    longitude: float
+    timezone: float
