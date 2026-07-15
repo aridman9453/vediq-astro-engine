@@ -1,3 +1,13 @@
+import os
+from datetime import datetime
+
+import swisseph as swe
+
+from planetary_positions import get_sign
+from house_engine import get_houses
+from planet_house_mapper import get_planet_house
+
+EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
 
 
@@ -20,8 +30,7 @@ def generate_birth_chart(
         "%Y-%m-%d %H:%M"
     )
 
-    hour = dt.hour + (dt.minute / 60.0)
-
+    hour = dt.hour + dt.minute / 60
     utc_hour = hour - timezone
 
     jd = swe.julday(
@@ -38,32 +47,38 @@ def generate_birth_chart(
         b'P'
     )
 
+    house_longitudes = houses[0]
     ascendant = houses[1][0]
 
-    import swisseph as swe
-import os
-from datetime import datetime
-from planetary_positions import get_sign
+    sun = swe.calc_ut(jd, swe.SUN)[0][0]
+    moon = swe.calc_ut(jd, swe.MOON)[0][0]
 
-EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
-swe.set_ephe_path(EPHE_PATH)
-
-
-def check_swisseph():
     return {
-        "status": "Swiss Ephemeris Loaded",
-@@ -59,3 +107,14 @@ def generate_birth_chart(
-        "Moon": get_sign(moon)
-    }
-}
-    return {
-    "success": True,
-    "julian_day": round(jd, 6),
+        "success": True,
+        "julian_day": round(jd, 6),
 
-    "ascendant": get_sign(ascendant),
+        "ascendant": get_sign(ascendant),
 
-    "planets": {
-        "Sun": get_sign(sun),
-        "Moon": get_sign(moon)
+        "houses": get_houses(houses),
+
+        "planets": {
+
+            "Sun": {
+                **get_sign(sun),
+                "house": get_planet_house(
+                    sun,
+                    house_longitudes
+                )
+            },
+
+            "Moon": {
+                **get_sign(moon),
+                "house": get_planet_house(
+                    moon,
+                    house_longitudes
+                )
+            }
+
+        }
+
     }
-}
