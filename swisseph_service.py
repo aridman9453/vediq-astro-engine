@@ -162,14 +162,6 @@ def generate_birth_chart(
         "house": get_planet_house(ketu, house_longitudes),
         "strength": "Shadow Planet",
         "aspects": get_planet_aspects("Ketu", get_planet_house(ketu, house_longitudes))
-    }  
-     }
-}
-"planets": {
-
-    ...
-    "Ketu": {
-        ...
     }
 
 },
