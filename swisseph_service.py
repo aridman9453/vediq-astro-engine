@@ -11,6 +11,20 @@ from planet_strength import get_planet_strength
 from planet_aspects import get_planet_aspects
 from yogas import detect_yogas
 from planet_conjunctions import get_conjunctions
+from dasha_engine import get_vimshottari_dasha
+from dosha_engine import detect_doshas
+from transit_engine import get_current_transits
+from divisional_chart import generate_navamsa
+
+from career_engine import analyze_career
+from wealth_engine import analyze_wealth
+from marriage_engine import analyze_marriage
+from health_engine import analyze_health
+from education_engine import analyze_education
+from spiritual_engine import analyze_spirituality
+
+from prediction_engine import generate_prediction
+from remedies_engine import generate_remedies
 
 EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
@@ -217,6 +231,31 @@ def generate_birth_chart(
 
         }),
 
-        "conjunctions": get_conjunctions(planet_data)
-    }
+        "conjunctions": get_conjunctions(planet_data),
+
+"dasha": get_vimshottari_dasha(moon),
+
+"doshas": detect_doshas(planet_data),
+
+"navamsa": generate_navamsa(planet_data),
+
+"transits": get_current_transits(),
+
+"career": analyze_career(planet_data),
+
+"wealth": analyze_wealth(planet_data),
+
+"marriage": analyze_marriage(planet_data),
+
+"health": analyze_health(planet_data),
+
+"education": analyze_education(planet_data),
+
+"spirituality": analyze_spirituality(planet_data),
+
+"prediction": generate_prediction(planet_data),
+
+"remedies": generate_remedies(planet_data)
+
+}
     
