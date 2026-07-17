@@ -27,8 +27,11 @@ def get_houses(houses):
         result.append({
             "house": i + 1,
             "name": HOUSE_NAMES[i],
-            "longitude": longitude,
-            "sign": sign_data["sign"]
+            "longitude": sign_data["longitude"],
+            "sign": sign_data["sign"],
+            "degree": sign_data["degree"],
+            "nakshatra": sign_data["nakshatra"],
+            "pada": sign_data["pada"]
         })
 
     return result
