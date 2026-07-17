@@ -13,7 +13,6 @@ class LoginRequest(BaseModel):
 
 
 class BirthChartRequest(BaseModel):
-    name: str
     birth_date: str
     birth_time: str
     latitude: float
