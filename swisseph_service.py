@@ -103,69 +103,78 @@ def generate_birth_chart(
     rahu = swe.calc_ut(jd, swe.MEAN_NODE)[0][0]
     ketu = (rahu + 180) % 360
 
-    planet_data = {
+   planet_data = {
 
     "Sun": {
-        "sign": get_sign(sun)["sign"],
+        **get_sign(sun),
         "longitude": sun,
         "house": get_planet_house(sun, house_longitudes),
-        "strength": get_planet_strength("Sun", get_sign(sun)["sign"])
+        "strength": get_planet_strength("Sun", get_sign(sun)["sign"]),
+        "aspects": get_planet_aspects("Sun", get_planet_house(sun, house_longitudes))
     },
 
     "Moon": {
-        "sign": get_sign(moon)["sign"],
+        **get_sign(moon),
         "longitude": moon,
         "house": get_planet_house(moon, house_longitudes),
-        "strength": get_planet_strength("Moon", get_sign(moon)["sign"])
+        "strength": get_planet_strength("Moon", get_sign(moon)["sign"]),
+        "aspects": get_planet_aspects("Moon", get_planet_house(moon, house_longitudes))
     },
 
     "Mercury": {
-        "sign": get_sign(mercury)["sign"],
+        **get_sign(mercury),
         "longitude": mercury,
         "house": get_planet_house(mercury, house_longitudes),
-        "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"])
+        "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"]),
+        "aspects": get_planet_aspects("Mercury", get_planet_house(mercury, house_longitudes))
     },
 
     "Venus": {
-        "sign": get_sign(venus)["sign"],
+        **get_sign(venus),
         "longitude": venus,
         "house": get_planet_house(venus, house_longitudes),
-        "strength": get_planet_strength("Venus", get_sign(venus)["sign"])
+        "strength": get_planet_strength("Venus", get_sign(venus)["sign"]),
+        "aspects": get_planet_aspects("Venus", get_planet_house(venus, house_longitudes))
     },
 
     "Mars": {
-        "sign": get_sign(mars)["sign"],
+        **get_sign(mars),
         "longitude": mars,
         "house": get_planet_house(mars, house_longitudes),
-        "strength": get_planet_strength("Mars", get_sign(mars)["sign"])
+        "strength": get_planet_strength("Mars", get_sign(mars)["sign"]),
+        "aspects": get_planet_aspects("Mars", get_planet_house(mars, house_longitudes))
     },
 
     "Jupiter": {
-        "sign": get_sign(jupiter)["sign"],
+        **get_sign(jupiter),
         "longitude": jupiter,
         "house": get_planet_house(jupiter, house_longitudes),
-        "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"])
+        "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"]),
+        "aspects": get_planet_aspects("Jupiter", get_planet_house(jupiter, house_longitudes))
     },
 
     "Saturn": {
-        "sign": get_sign(saturn)["sign"],
+        **get_sign(saturn),
         "longitude": saturn,
         "house": get_planet_house(saturn, house_longitudes),
-        "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"])
+        "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"]),
+        "aspects": get_planet_aspects("Saturn", get_planet_house(saturn, house_longitudes))
     },
 
     "Rahu": {
-        "sign": get_sign(rahu)["sign"],
+        **get_sign(rahu),
         "longitude": rahu,
         "house": get_planet_house(rahu, house_longitudes),
-        "strength": "Shadow Planet"
+        "strength": "Shadow Planet",
+        "aspects": get_planet_aspects("Rahu", get_planet_house(rahu, house_longitudes))
     },
 
     "Ketu": {
-        "sign": get_sign(ketu)["sign"],
+        **get_sign(ketu),
         "longitude": ketu,
         "house": get_planet_house(ketu, house_longitudes),
-        "strength": "Shadow Planet"
+        "strength": "Shadow Planet",
+        "aspects": get_planet_aspects("Ketu", get_planet_house(ketu, house_longitudes))
     }
 
 }
