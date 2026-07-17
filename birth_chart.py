@@ -8,13 +8,14 @@ router = APIRouter(
 )
 
 
-chart = calculate_birth_chart(
-    birth_date=data.birth_date,
-    birth_time=data.birth_time,
-    latitude=data.latitude,
-    longitude=data.longitude,
-    timezone=data.timezone
-)
+class BirthChartRequest(BaseModel):
+    name: str
+    birth_date: str
+    birth_time: str
+    latitude: float
+    longitude: float
+    timezone: float
+
 
 @router.get("/status")
 def status():
@@ -27,8 +28,8 @@ def status():
 def generate(data: BirthChartRequest):
 
     chart = calculate_birth_chart(
-        birth_date=data.date,
-        birth_time=data.time,
+        birth_date=data.birth_date,
+        birth_time=data.birth_time,
         latitude=data.latitude,
         longitude=data.longitude,
         timezone=data.timezone
