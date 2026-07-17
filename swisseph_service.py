@@ -7,6 +7,7 @@ from planetary_positions import get_sign
 from house_engine import get_houses
 from planet_house_mapper import get_planet_house
 from house_lords import get_house_lords
+from planet_strength import get_planet_strength
 
 EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
@@ -72,52 +73,61 @@ def generate_birth_chart(
 
 "house_lords": get_house_lords(get_houses(houses)),
 
-        "planets": {
+       "planets": {
 
     "Sun": {
         **get_sign(sun),
-        "house": get_planet_house(sun, house_longitudes)
+        "house": get_planet_house(sun, house_longitudes),
+        "strength": get_planet_strength("Sun", get_sign(sun)["sign"])
     },
 
     "Moon": {
         **get_sign(moon),
-        "house": get_planet_house(moon, house_longitudes)
+        "house": get_planet_house(moon, house_longitudes),
+        "strength": get_planet_strength("Moon", get_sign(moon)["sign"])
     },
 
     "Mercury": {
         **get_sign(mercury),
-        "house": get_planet_house(mercury, house_longitudes)
+        "house": get_planet_house(mercury, house_longitudes),
+        "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"])
     },
 
     "Venus": {
         **get_sign(venus),
-        "house": get_planet_house(venus, house_longitudes)
+        "house": get_planet_house(venus, house_longitudes),
+        "strength": get_planet_strength("Venus", get_sign(venus)["sign"])
     },
 
     "Mars": {
         **get_sign(mars),
-        "house": get_planet_house(mars, house_longitudes)
+        "house": get_planet_house(mars, house_longitudes),
+        "strength": get_planet_strength("Mars", get_sign(mars)["sign"])
     },
 
     "Jupiter": {
         **get_sign(jupiter),
-        "house": get_planet_house(jupiter, house_longitudes)
+        "house": get_planet_house(jupiter, house_longitudes),
+        "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"])
     },
 
     "Saturn": {
         **get_sign(saturn),
-        "house": get_planet_house(saturn, house_longitudes)
+        "house": get_planet_house(saturn, house_longitudes),
+        "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"])
     },
 
     "Rahu": {
         **get_sign(rahu),
-        "house": get_planet_house(rahu, house_longitudes)
+        "house": get_planet_house(rahu, house_longitudes),
+        "strength": "Shadow Planet"
     },
 
     "Ketu": {
         **get_sign(ketu),
-        "house": get_planet_house(ketu, house_longitudes)
-     }
+        "house": get_planet_house(ketu, house_longitudes),
+        "strength": "Shadow Planet"
+    }
 
     }
 }
