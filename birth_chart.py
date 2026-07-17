@@ -8,14 +8,13 @@ router = APIRouter(
 )
 
 
-class BirthChartRequest(BaseModel):
-    name: str
-    date: str
-    time: str
-    latitude: float
-    longitude: float
-    timezone: float
-
+chart = calculate_birth_chart(
+    birth_date=data.birth_date,
+    birth_time=data.birth_time,
+    latitude=data.latitude,
+    longitude=data.longitude,
+    timezone=data.timezone
+)
 
 @router.get("/status")
 def status():
