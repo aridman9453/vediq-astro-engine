@@ -9,6 +9,31 @@ from planet_house_mapper import get_planet_house
 from house_lords import get_house_lords
 from planet_strength import get_planet_strength
 from planet_aspects import get_planet_aspects
+from yogas import detect_yogas
+
+EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
+swe.set_ephe_path(EPHE_PATH)
+
+
+def check_swisseph():
+    return {
+        "status": "Swiss Ephemeris Loaded",
+        "path": EPHE_PATH
+    }
+
+
+import os
+from datetime import datetime
+
+import swisseph as swe
+
+from planetary_positions import get_sign
+from house_engine import get_houses
+from planet_house_mapper import get_planet_house
+from house_lords import get_house_lords
+from planet_strength import get_planet_strength
+from planet_aspects import get_planet_aspects
+from yogas import detect_yogas
 
 EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
 swe.set_ephe_path(EPHE_PATH)
@@ -140,4 +165,52 @@ def generate_birth_chart(
     }  
      }
 }
+"planets": {
+
+    ...
+    "Ketu": {
+        ...
+    }
+
+},
+
+"yogas": detect_yogas({
+
+    "Sun": {
+        "house": get_planet_house(sun, house_longitudes),
+        "strength": get_planet_strength("Sun", get_sign(sun)["sign"])
+    },
+
+    "Moon": {
+        "house": get_planet_house(moon, house_longitudes),
+        "strength": get_planet_strength("Moon", get_sign(moon)["sign"])
+    },
+
+    "Mercury": {
+        "house": get_planet_house(mercury, house_longitudes),
+        "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"])
+    },
+
+    "Venus": {
+        "house": get_planet_house(venus, house_longitudes),
+        "strength": get_planet_strength("Venus", get_sign(venus)["sign"])
+    },
+
+    "Mars": {
+        "house": get_planet_house(mars, house_longitudes),
+        "strength": get_planet_strength("Mars", get_sign(mars)["sign"])
+    },
+
+    "Jupiter": {
+        "house": get_planet_house(jupiter, house_longitudes),
+        "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"])
+    },
+
+    "Saturn": {
+        "house": get_planet_house(saturn, house_longitudes),
+        "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"])
+    }
+
+})
         
+
