@@ -103,7 +103,7 @@ def generate_birth_chart(
     rahu = swe.calc_ut(jd, swe.MEAN_NODE)[0][0]
     ketu = (rahu + 180) % 360
 
-   planet_data = {
+    planet_data = {
 
     "Sun": {
         **get_sign(sun),
@@ -187,8 +187,7 @@ def generate_birth_chart(
     }
 
 }
-    print("PLANET DATA DEBUG:", planet_data)
-    print("SUN DEBUG:", planet_data["Sun"])
+   
     return {
         "success": True,
         "julian_day": round(jd, 6),
