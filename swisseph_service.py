@@ -212,5 +212,5 @@ def generate_birth_chart(
     }
 
 })
-        
+}        
 
