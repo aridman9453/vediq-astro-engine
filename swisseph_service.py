@@ -108,6 +108,7 @@ def generate_birth_chart(
     "Sun": {
         **get_sign(sun),
         "longitude": sun,
+        "degree": sun % 30,
         "house": get_planet_house(sun, house_longitudes),
         "strength": get_planet_strength("Sun", get_sign(sun)["sign"]),
         "aspects": get_planet_aspects("Sun", get_planet_house(sun, house_longitudes))
@@ -116,6 +117,7 @@ def generate_birth_chart(
     "Moon": {
         **get_sign(moon),
         "longitude": moon,
+        "degree": moon % 30,
         "house": get_planet_house(moon, house_longitudes),
         "strength": get_planet_strength("Moon", get_sign(moon)["sign"]),
         "aspects": get_planet_aspects("Moon", get_planet_house(moon, house_longitudes))
@@ -124,6 +126,7 @@ def generate_birth_chart(
     "Mercury": {
         **get_sign(mercury),
         "longitude": mercury,
+        "degree": mercury % 30,
         "house": get_planet_house(mercury, house_longitudes),
         "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"]),
         "aspects": get_planet_aspects("Mercury", get_planet_house(mercury, house_longitudes))
@@ -132,6 +135,7 @@ def generate_birth_chart(
     "Venus": {
         **get_sign(venus),
         "longitude": venus,
+        "degree": venus % 30,
         "house": get_planet_house(venus, house_longitudes),
         "strength": get_planet_strength("Venus", get_sign(venus)["sign"]),
         "aspects": get_planet_aspects("Venus", get_planet_house(venus, house_longitudes))
@@ -140,6 +144,7 @@ def generate_birth_chart(
     "Mars": {
         **get_sign(mars),
         "longitude": mars,
+        "degree": mars % 30,
         "house": get_planet_house(mars, house_longitudes),
         "strength": get_planet_strength("Mars", get_sign(mars)["sign"]),
         "aspects": get_planet_aspects("Mars", get_planet_house(mars, house_longitudes))
@@ -148,6 +153,7 @@ def generate_birth_chart(
     "Jupiter": {
         **get_sign(jupiter),
         "longitude": jupiter,
+        "degree": jupiter % 30,
         "house": get_planet_house(jupiter, house_longitudes),
         "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"]),
         "aspects": get_planet_aspects("Jupiter", get_planet_house(jupiter, house_longitudes))
@@ -156,6 +162,7 @@ def generate_birth_chart(
     "Saturn": {
         **get_sign(saturn),
         "longitude": saturn,
+        "degree": saturn % 30,
         "house": get_planet_house(saturn, house_longitudes),
         "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"]),
         "aspects": get_planet_aspects("Saturn", get_planet_house(saturn, house_longitudes))
@@ -164,6 +171,7 @@ def generate_birth_chart(
     "Rahu": {
         **get_sign(rahu),
         "longitude": rahu,
+        "degree": rahu % 30,
         "house": get_planet_house(rahu, house_longitudes),
         "strength": "Shadow Planet",
         "aspects": get_planet_aspects("Rahu", get_planet_house(rahu, house_longitudes))
@@ -172,6 +180,7 @@ def generate_birth_chart(
     "Ketu": {
         **get_sign(ketu),
         "longitude": ketu,
+        "degree": ketu % 30,
         "house": get_planet_house(ketu, house_longitudes),
         "strength": "Shadow Planet",
         "aspects": get_planet_aspects("Ketu", get_planet_house(ketu, house_longitudes))
