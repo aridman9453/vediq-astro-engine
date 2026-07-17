@@ -169,6 +169,8 @@ def generate_birth_chart(
     }
 
 }
+    print("PLANET DATA DEBUG:", planet_data)
+    print("SUN DEBUG:", planet_data["Sun"])
     return {
         "success": True,
         "julian_day": round(jd, 6),
@@ -284,7 +286,7 @@ def generate_birth_chart(
             }
 
         }),
-
+         
         "conjunctions": get_conjunctions(planet_data),
 
 "dasha": get_vimshottari_dasha(moon),
