@@ -220,5 +220,4 @@ def generate_birth_chart(
 
         "conjunctions": get_conjunctions(planet_data)
     }
-}
     
