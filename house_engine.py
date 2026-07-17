@@ -1,3 +1,5 @@
+from planetary_positions import get_sign
+
 HOUSE_NAMES = [
     "1st House",
     "2nd House",
@@ -18,10 +20,15 @@ def get_houses(houses):
     result = []
 
     for i in range(12):
+        longitude = round(houses[0][i], 4)
+
+        sign_data = get_sign(longitude)
+
         result.append({
             "house": i + 1,
             "name": HOUSE_NAMES[i],
-            "longitude": round(houses[0][i], 4)
+            "longitude": longitude,
+            "sign": sign_data["sign"]
         })
 
     return result
