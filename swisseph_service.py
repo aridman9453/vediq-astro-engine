@@ -104,16 +104,60 @@ def generate_birth_chart(
     ketu = (rahu + 180) % 360
 
     planet_data = {
-        "Sun": get_sign(sun),
-        "Moon": get_sign(moon),
-        "Mercury": get_sign(mercury),
-        "Venus": get_sign(venus),
-        "Mars": get_sign(mars),
-        "Jupiter": get_sign(jupiter),
-        "Saturn": get_sign(saturn),
-        "Rahu": get_sign(rahu),
-        "Ketu": get_sign(ketu)
+    "Sun": {
+        "sign": get_sign(sun)["sign"],
+        "house": get_planet_house(sun, house_longitudes),
+        "strength": get_planet_strength("Sun", get_sign(sun)["sign"])
+    },
+
+    "Moon": {
+        "sign": get_sign(moon)["sign"],
+        "house": get_planet_house(moon, house_longitudes),
+        "strength": get_planet_strength("Moon", get_sign(moon)["sign"])
+    },
+
+    "Mercury": {
+        "sign": get_sign(mercury)["sign"],
+        "house": get_planet_house(mercury, house_longitudes),
+        "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"])
+    },
+
+    "Venus": {
+        "sign": get_sign(venus)["sign"],
+        "house": get_planet_house(venus, house_longitudes),
+        "strength": get_planet_strength("Venus", get_sign(venus)["sign"])
+    },
+
+    "Mars": {
+        "sign": get_sign(mars)["sign"],
+        "house": get_planet_house(mars, house_longitudes),
+        "strength": get_planet_strength("Mars", get_sign(mars)["sign"])
+    },
+
+    "Jupiter": {
+        "sign": get_sign(jupiter)["sign"],
+        "house": get_planet_house(jupiter, house_longitudes),
+        "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"])
+    },
+
+    "Saturn": {
+        "sign": get_sign(saturn)["sign"],
+        "house": get_planet_house(saturn, house_longitudes),
+        "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"])
+    },
+
+    "Rahu": {
+        "sign": get_sign(rahu)["sign"],
+        "house": get_planet_house(rahu, house_longitudes),
+        "strength": "Shadow Planet"
+    },
+
+    "Ketu": {
+        "sign": get_sign(ketu)["sign"],
+        "house": get_planet_house(ketu, house_longitudes),
+        "strength": "Shadow Planet"
     }
+}
 
     return {
         "success": True,
