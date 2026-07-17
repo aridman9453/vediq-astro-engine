@@ -19,8 +19,12 @@ def get_house_lords(houses):
     result = []
 
     for house in houses:
+    print("HOUSE DATA:", house)
 
-        sign = house["sign"]
+    if "sign" not in house:
+        raise Exception(f"House missing sign: {house}")
+
+    sign = house["sign"]
 
         result.append({
             "house": house["house"],
