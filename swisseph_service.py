@@ -88,7 +88,7 @@ def generate_birth_chart(
     saturn = swe.calc_ut(jd, swe.SATURN)[0][0]
 
       rahu = swe.calc_ut(jd, swe.MEAN_NODE)[0][0]
-    ketu = (rahu + 180) % 360
+      ketu = (rahu + 180) % 360
 
     planet_data = {
         "Sun": get_sign(sun),
