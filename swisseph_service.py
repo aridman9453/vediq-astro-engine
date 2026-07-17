@@ -104,61 +104,71 @@ def generate_birth_chart(
     ketu = (rahu + 180) % 360
 
     planet_data = {
+
     "Sun": {
         "sign": get_sign(sun)["sign"],
+        "longitude": sun,
         "house": get_planet_house(sun, house_longitudes),
         "strength": get_planet_strength("Sun", get_sign(sun)["sign"])
     },
 
     "Moon": {
         "sign": get_sign(moon)["sign"],
+        "longitude": moon,
         "house": get_planet_house(moon, house_longitudes),
         "strength": get_planet_strength("Moon", get_sign(moon)["sign"])
     },
 
     "Mercury": {
         "sign": get_sign(mercury)["sign"],
+        "longitude": mercury,
         "house": get_planet_house(mercury, house_longitudes),
         "strength": get_planet_strength("Mercury", get_sign(mercury)["sign"])
     },
 
     "Venus": {
         "sign": get_sign(venus)["sign"],
+        "longitude": venus,
         "house": get_planet_house(venus, house_longitudes),
         "strength": get_planet_strength("Venus", get_sign(venus)["sign"])
     },
 
     "Mars": {
         "sign": get_sign(mars)["sign"],
+        "longitude": mars,
         "house": get_planet_house(mars, house_longitudes),
         "strength": get_planet_strength("Mars", get_sign(mars)["sign"])
     },
 
     "Jupiter": {
         "sign": get_sign(jupiter)["sign"],
+        "longitude": jupiter,
         "house": get_planet_house(jupiter, house_longitudes),
         "strength": get_planet_strength("Jupiter", get_sign(jupiter)["sign"])
     },
 
     "Saturn": {
         "sign": get_sign(saturn)["sign"],
+        "longitude": saturn,
         "house": get_planet_house(saturn, house_longitudes),
         "strength": get_planet_strength("Saturn", get_sign(saturn)["sign"])
     },
 
     "Rahu": {
         "sign": get_sign(rahu)["sign"],
+        "longitude": rahu,
         "house": get_planet_house(rahu, house_longitudes),
         "strength": "Shadow Planet"
     },
 
     "Ketu": {
         "sign": get_sign(ketu)["sign"],
+        "longitude": ketu,
         "house": get_planet_house(ketu, house_longitudes),
         "strength": "Shadow Planet"
     }
-}
 
+}
     return {
         "success": True,
         "julian_day": round(jd, 6),
