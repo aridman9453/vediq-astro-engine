@@ -9,9 +9,14 @@ class PalmUploadRequest(BaseModel):
 
 
 class PalmAnalyzeRequest(BaseModel):
+
     user_id: str
+
     image_url: str
-    birth_chart_id: Optional[str] = None
+
+    birth_chart: dict
+
+    question: str = "Analyze my palm completely."
 
 
 class PalmReportResponse(BaseModel):
