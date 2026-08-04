@@ -188,34 +188,36 @@ def generate_birth_chart(
 
 }
 
-houses_data = get_houses(houses)
-house_lords_data = get_house_lords(houses_data)
+    houses_data = get_houses(houses)
+    house_lords_data = get_house_lords(houses_data)
 
-chart_data = {
-    "planets": planet_data,
-    "houses": houses_data,
-    "house_lords": house_lords_data
-}
+    chart_data = {
+        "planets": planet_data,
+        "houses": houses_data,
+        "house_lords": house_lords_data
+    }
 
-career = analyze_career(chart_data)
-wealth = analyze_wealth(chart_data)
-marriage = analyze_marriage(chart_data)
-health = analyze_health(chart_data)
-education = analyze_education(chart_data)
-spirituality = analyze_spirituality(chart_data)
+    career = analyze_career(chart_data)
+    wealth = analyze_wealth(chart_data)
+    marriage = analyze_marriage(chart_data)
+    health = analyze_health(chart_data)
+    education = analyze_education(chart_data)
+    spirituality = analyze_spirituality(chart_data)
 
-prediction = generate_prediction({
-    **chart_data,
-    "career": career,
-    "wealth": wealth,
-    "marriage": marriage,
-    "health": health,
-    "education": education,
-    "spirituality": spirituality
-})
+    prediction = generate_prediction({
+        **chart_data,
+        "career": career,
+        "wealth": wealth,
+        "marriage": marriage,
+        "health": health,
+        "education": education,
+        "spirituality": spirituality
+    })
 
-   remedies = generate_remedies(chart_data)
-   return {
+    remedies = generate_remedies(chart_data)
+
+
+    return {
         "success": True,
         "julian_day": round(jd, 6),
 
