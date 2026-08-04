@@ -4,79 +4,131 @@ from typing import Dict
 def analyze_career(chart: Dict):
 
     planets = chart["planets"]
-
     houses = chart["houses"]
-
-    tenth_house = houses[9]
-    tenth_lord = chart["house_lords"][9]["lord"]
-
-    saturn = planets["Saturn"]
-
-    mercury = planets["Mercury"]
-
-    sun = planets["Sun"]
-
-    mars = planets["Mars"]
-
-    jupiter = planets["Jupiter"]
-
-    moon = planets["Moon"]
+    house_lords = chart["house_lords"]
 
     score = 50
+    careers = []
 
-    recommendations = []
+    sun = planets["Sun"]
+    mercury = planets["Mercury"]
+    mars = planets["Mars"]
+    jupiter = planets["Jupiter"]
+    saturn = planets["Saturn"]
+    moon = planets["Moon"]
 
-    if saturn["strength"] == "Own Sign":
+    # Sun
+    if sun["strength"] == "Own Sign":
         score += 15
-        recommendations.append("Government")
+        careers.extend([
+            "Government",
+            "Administration",
+            "Leadership",
+            "Politics"
+        ])
 
+    # Mercury
     if mercury["strength"] == "Own Sign":
         score += 15
-        recommendations.append("Business")
+        careers.extend([
+            "Business",
+            "Finance",
+            "Technology",
+            "AI",
+            "Software"
+        ])
 
-    if sun["strength"] == "Own Sign":
-        score += 10
-        recommendations.append("Leadership")
-
+    # Mars
     if mars["strength"] == "Own Sign":
-        score += 10
-        recommendations.append("Engineering")
+        score += 12
+        careers.extend([
+            "Engineering",
+            "Defence",
+            "Police",
+            "Construction"
+        ])
 
+    # Jupiter
     if jupiter["strength"] == "Own Sign":
-        score += 10
-        recommendations.append("Teaching")
+        score += 12
+        careers.extend([
+            "Teaching",
+            "Law",
+            "Consulting",
+            "Spiritual Guidance"
+        ])
 
+    # Saturn
+    if saturn["strength"] == "Own Sign":
+        score += 12
+        careers.extend([
+            "Manufacturing",
+            "Infrastructure",
+            "Mining",
+            "Real Estate"
+        ])
+
+    # Moon
     if moon["strength"] == "Own Sign":
         score += 10
-        recommendations.append("Public Relations")
+        careers.extend([
+            "Media",
+            "Hospitality",
+            "Public Relations",
+            "Travel"
+        ])
+
+    # 10th House Sign
+    tenth_sign = houses[9]["sign"]
+
+    if tenth_sign == "Virgo":
+        careers.extend([
+            "Data Science",
+            "Programming",
+            "Analytics",
+            "Healthcare"
+        ])
+
+    elif tenth_sign == "Leo":
+        careers.extend([
+            "CEO",
+            "Government",
+            "Politics"
+        ])
+
+    elif tenth_sign == "Capricorn":
+        careers.extend([
+            "Corporate",
+            "Management",
+            "Administration"
+        ])
+
+    elif tenth_sign == "Aquarius":
+        careers.extend([
+            "AI",
+            "Research",
+            "Innovation"
+        ])
+
+    careers = list(dict.fromkeys(careers))
 
     if score > 100:
         score = 100
 
+    if score >= 90:
+        growth = "Excellent"
+
+    elif score >= 75:
+        growth = "Very Strong"
+
+    elif score >= 60:
+        growth = "Good"
+
+    else:
+        growth = "Average"
+
     return {
-
         "career_score": score,
-
-        "career_house": tenth_house,
-
-        "career_lord": tenth_lord,
-
-        "best_fields": recommendations,
-
-        "career_growth":
-
-            "Excellent"
-
-            if score >= 85
-
-            else
-
-            "Good"
-
-            if score >= 70
-
-            else
-
-            "Average"
-
+        "career_growth": growth,
+        "best_fields": careers[:10]
     }
