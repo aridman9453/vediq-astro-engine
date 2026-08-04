@@ -1,39 +1,36 @@
-from pydantic import BaseModel
-from typing import Optional, Dict, Any
-from datetime import datetime
+from fastapi import APIRouter, HTTPException
+from palm_models import PalmAnalyzeRequest
+from palm_service import analyze_palm
+
+router = APIRouter()
 
 
-class PalmUploadRequest(BaseModel):
-    user_id: str
-    hand_type: str  # left or right
+@router.get("/status")
+def palm_status():
+    return {
+        "success": True,
+        "service": "Palm Reading Engine",
+        "status": "Ready"
+    }
 
 
-class PalmAnalyzeRequest(BaseModel):
+@router.post("/analyze")
+def analyze_palm_route(request: PalmAnalyzeRequest):
+    try:
+        result = analyze_palm(
+            user_id=request.user_id,
+            image_url=request.image_url,
+            birth_chart=request.birth_chart,
+            question=request.question
+        )
 
-    user_id: str
+        return {
+            "success": True,
+            "result": result
+        }
 
-    image_url: str
-
-    birth_chart: dict
-
-    question: str = "Analyze my palm completely."
-
-
-class PalmReportResponse(BaseModel):
-    success: bool
-    report_id: str
-    image_url: str
-    analysis: Dict[str, Any]
-    final_report: Dict[str, Any]
-    created_at: datetime
-
-
-class PalmHistoryItem(BaseModel):
-    report_id: str
-    created_at: datetime
-    image_url: str
-
-
-class PalmHistoryResponse(BaseModel):
-    success: bool
-    reports: list[PalmHistoryItem]
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
