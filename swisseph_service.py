@@ -320,8 +320,11 @@ def generate_birth_chart(
     "house_lords": get_house_lords(get_houses(houses))
 }),
 
-"wealth": analyze_wealth(planet_data),
-
+"wealth": analyze_wealth({
+    "planets": planet_data,
+    "houses": get_houses(houses),
+    "house_lords": get_house_lords(get_houses(houses))
+}),
 "marriage": analyze_marriage(planet_data),
 
 "health": analyze_health(planet_data),
