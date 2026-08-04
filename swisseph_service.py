@@ -16,7 +16,7 @@ from dosha_engine import detect_doshas
 from transit_engine import get_current_transits
 from divisional_chart import generate_navamsa
 
-from career_engine import generate_career_report
+from career_engine import analyze_career
 from wealth_engine import analyze_wealth
 from marriage_engine import analyze_marriage
 from health_engine import analyze_health
@@ -314,7 +314,7 @@ def generate_birth_chart(
 
 "transits": get_current_transits(),
 
-"career": generate_career_report({
+"career": analyze_career({
     "planets": planet_data,
     "houses": get_houses(houses),
     "house_lords": get_house_lords(get_houses(houses))
