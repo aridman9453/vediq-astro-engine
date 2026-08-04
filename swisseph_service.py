@@ -40,7 +40,7 @@ def check_swisseph():
 import os
 from datetime import datetime
 
-
+import swisseph as swe
 
 from planetary_positions import get_sign
 from house_engine import get_houses
@@ -50,7 +50,8 @@ from planet_strength import get_planet_strength
 from planet_aspects import get_planet_aspects
 from yogas import detect_yogas
 
-
+EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
+swe.set_ephe_path(EPHE_PATH)
 
 
 def check_swisseph():
