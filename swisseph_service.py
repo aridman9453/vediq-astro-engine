@@ -349,10 +349,16 @@ def generate_birth_chart(
     "house_lords": get_house_lords(get_houses(houses))
 }),
 
-"prediction": generate_prediction({
+prediction = generate_prediction({
     "planets": planet_data,
     "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
+    "house_lords": get_house_lords(get_houses(houses)),
+    "career": career,
+    "wealth": wealth,
+    "marriage": marriage,
+    "health": health,
+    "education": education,
+    "spirituality": spirituality
 }),
 "remedies": generate_remedies({
     "planets": planet_data,
