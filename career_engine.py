@@ -1,7 +1,7 @@
 from typing import Dict
 
 
-def generate_career_report(chart: Dict):
+def analyze_career(chart: Dict):
 
     planets = chart["planets"]
 
