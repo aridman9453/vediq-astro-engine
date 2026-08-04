@@ -214,7 +214,7 @@ prediction = generate_prediction({
     "spirituality": spirituality
 })
 
-remedies = generate_remedies(chart_data)
+   remedies = generate_remedies(chart_data)
    return {
         "success": True,
         "julian_day": round(jd, 6),
