@@ -40,7 +40,7 @@ def check_swisseph():
 import os
 from datetime import datetime
 
-import swisseph as swe
+
 
 from planetary_positions import get_sign
 from house_engine import get_houses
@@ -50,8 +50,7 @@ from planet_strength import get_planet_strength
 from planet_aspects import get_planet_aspects
 from yogas import detect_yogas
 
-EPHE_PATH = os.path.join(os.path.dirname(__file__), "ephe")
-swe.set_ephe_path(EPHE_PATH)
+
 
 
 def check_swisseph():
@@ -187,17 +186,43 @@ def generate_birth_chart(
     }
 
 }
-   
-    return {
+
+houses_data = get_houses(houses)
+house_lords_data = get_house_lords(houses_data)
+
+chart_data = {
+    "planets": planet_data,
+    "houses": houses_data,
+    "house_lords": house_lords_data
+}
+
+career = analyze_career(chart_data)
+wealth = analyze_wealth(chart_data)
+marriage = analyze_marriage(chart_data)
+health = analyze_health(chart_data)
+education = analyze_education(chart_data)
+spirituality = analyze_spirituality(chart_data)
+
+prediction = generate_prediction({
+    **chart_data,
+    "career": career,
+    "wealth": wealth,
+    "marriage": marriage,
+    "health": health,
+    "education": education,
+    "spirituality": spirituality
+})
+
+remedies = generate_remedies(chart_data)
+   return {
         "success": True,
         "julian_day": round(jd, 6),
 
         "ascendant": get_sign(ascendant),
 
-        "houses": get_houses(houses),
+        "houses": houses_data,
 
-        "house_lords": get_house_lords(get_houses(houses)),
-
+        "house_lords": house_lords_data,
         "planets": {
 
             "Sun": {
@@ -264,7 +289,21 @@ def generate_birth_chart(
             }
 
         },
+        "career": career,
 
+        "wealth": wealth,
+
+        "marriage": marriage,
+
+        "health": health,
+
+        "education": education,
+
+        "spirituality": spirituality,
+
+        "prediction": prediction,
+
+        "remedies": remedies,
         "yogas": detect_yogas({
 
             "Sun": {
