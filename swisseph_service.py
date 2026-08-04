@@ -354,7 +354,11 @@ def generate_birth_chart(
     "houses": get_houses(houses),
     "house_lords": get_house_lords(get_houses(houses))
 }),
-"remedies": generate_remedies(planet_data)
+"remedies": generate_remedies({
+    "planets": planet_data,
+    "houses": get_houses(houses),
+    "house_lords": get_house_lords(get_houses(houses))
+}),
 
 }
     
