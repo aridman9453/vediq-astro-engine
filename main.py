@@ -6,6 +6,7 @@ from astrology import router as astrology_router
 from birth_chart import router as birth_chart_router
 from swisseph_router import router as swisseph_router
 from palm_router import router as palm_router
+from ai_astrologer_router import router as ai_astrologer_router
 app = FastAPI(title="vedIQ Astro Engine")
 
 app.add_middleware(
@@ -21,7 +22,7 @@ app.include_router(astrology_router)
 app.include_router(birth_chart_router)
 app.include_router(swisseph_router)
 app.include_router(palm_router)
-
+app.include_router(ai_astrologer_router)
 
 @app.get("/")
 def root():
