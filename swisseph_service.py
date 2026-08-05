@@ -356,57 +356,6 @@ def generate_birth_chart(
 
 "transits": get_current_transits(),
 
-"career": analyze_career({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-
-"wealth": analyze_wealth({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-"marriage": analyze_marriage({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-
-"health": analyze_health({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-
-"education": analyze_education({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-
-"spirituality": analyze_spirituality({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
-
-prediction = generate_prediction({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses)),
-    "career": career,
-    "wealth": wealth,
-    "marriage": marriage,
-    "health": health,
-    "education": education,
-    "spirituality": spirituality
-}),
-"remedies": generate_remedies({
-    "planets": planet_data,
-    "houses": get_houses(houses),
-    "house_lords": get_house_lords(get_houses(houses))
-}),
 
 }
     
