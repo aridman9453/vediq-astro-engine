@@ -11,7 +11,12 @@ router = APIRouter(
 
 
 class AIQuestion(BaseModel):
-    birth_chart: dict
+    name: str
+    dob: str
+    tob: str
+    latitude: float
+    longitude: float
+    timezone: float
     question: str
     palm_report: dict | None = None
 
@@ -19,12 +24,12 @@ class AIQuestion(BaseModel):
 @router.post("/ask")
 def ask(data: AIQuestion):
 
-    birth_chart = generate_birth_chart(
-        birth_date=data.birth_chart["dob"],
-        birth_time=data.birth_chart["tob"],
-        latitude=27.13,
-        longitude=81.95,
-        timezone=5.5
+    birth_chart = calculate_birth_chart(
+        birth_date=data.dob,
+        birth_time=data.tob,
+        latitude=data.latitude,
+        longitude=data.longitude,
+        timezone=data.timezone
     )
 
     answer = ask_ai_astrologer(
