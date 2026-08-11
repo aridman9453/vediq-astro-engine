@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 from ai_astrologer_engine import ask_ai_astrologer
-from birth_chart import generate_birth_chart
+from birth_chart import calculate_birth_chart
 
 router = APIRouter(
     prefix="/ai-astrologer",
