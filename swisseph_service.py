@@ -62,24 +62,20 @@ def check_swisseph():
 
 
 def generate_birth_chart(
-    birth_date,
-    birth_time,
+    birth_datetime_utc,
     latitude,
-    longitude,
-    timezone
+    longitude
 ):
-    dt = datetime.strptime(
-        f"{birth_date} {birth_time}",
-        "%Y-%m-%d %H:%M"
+    utc_hour = (
+        birth_datetime_utc.hour
+        + birth_datetime_utc.minute / 60
+        + birth_datetime_utc.second / 3600
     )
 
-    hour = dt.hour + dt.minute / 60
-    utc_hour = hour - timezone
-
     jd = swe.julday(
-        dt.year,
-        dt.month,
-        dt.day,
+        birth_datetime_utc.year,
+        birth_datetime_utc.month,
+        birth_datetime_utc.day,
         utc_hour
     )
 
