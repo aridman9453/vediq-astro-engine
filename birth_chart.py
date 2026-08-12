@@ -1,47 +1,44 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel
-from timezonefinder import TimezoneFinder
+from ai_astrologer_engine import ask_ai_astrologer
 from swisseph_service import generate_birth_chart as calculate_birth_chart
-from location_service import birth_datetime_to_utc
+from location_service import resolve_location, birth_datetime_to_utc
 
 router = APIRouter(
-    prefix="/birth-chart",
-    tags=["Birth Chart"]
+    prefix="/ai-astrologer",
+    tags=["AI Astrologer"]
 )
 
-tf = TimezoneFinder()
+class AIQuestion(BaseModel):
+    birth_chart: dict
+    question: str
+    palm_report: dict | None = None
 
-class BirthChartRequest(BaseModel):
-    name: str
-    birth_date: str
-    birth_time: str
-    latitude: float
-    longitude: float
+@router.post("/ask")
+def ask(data: AIQuestion):
+    birth_data = data.birth_chart
 
-@router.get("/status")
-def status():
-    return {"status": "Birth Chart Engine Ready"}
-
-@router.post("/generate")
-def generate(data: BirthChartRequest):
-    timezone_name = tf.timezone_at(lat=data.latitude, lng=data.longitude)
-    if timezone_name is None:
-        raise HTTPException(status_code=400, detail="Could not find timezone for this location")
+    location = resolve_location(birth_data["place"])
 
     utc_dt = birth_datetime_to_utc(
-        birth_date=data.birth_date,
-        birth_time=data.birth_time,
-        timezone_name=timezone_name
+        birth_date=birth_data["dob"],
+        birth_time=birth_data["tob"],
+        timezone_name=location["timezone_name"]
     )
 
-    chart = calculate_birth_chart(
+    calculated_chart = calculate_birth_chart(
         birth_datetime_utc=utc_dt,
-        latitude=data.latitude,
-        longitude=data.longitude
+        latitude=location["latitude"],
+        longitude=location["longitude"]
+    )
+
+    answer = ask_ai_astrologer(
+        birth_chart=calculated_chart,
+        user_question=data.question,
+        palm_report=data.palm_report
     )
 
     return {
         "success": True,
-        "name": data.name,
-        "chart": chart
+        "answer": answer
     }
