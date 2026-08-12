@@ -1,41 +1,28 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
-from swisseph_service import generate_birth_chart as calculate_birth_chart
-from location_service import resolve_location, birth_datetime_to_utc
+from fastapi import APIRouter, HTTPException
 
-router = APIRouter(
-    prefix="/birth-chart",
-    tags=["Birth Chart"]
+from astrologer_service import (
+    get_all_astrologers,
+    get_astrologer
 )
 
-class BirthChartRequest(BaseModel):
-    name: str
-    birth_date: str
-    birth_time: str
-    birth_place: str
+router = APIRouter(
+    prefix="/astrologers",
+    tags=["Human Astrologers"]
+)
 
-@router.get("/status")
-def status():
-    return {"status": "Birth Chart Engine Ready"}
+@router.get("/")
+def all_astrologers():
+    return get_all_astrologers()
 
-@router.post("/generate")
-def generate(data: BirthChartRequest):
-    location = resolve_location(data.birth_place)
+@router.get("/{astro_id}")
+def astrologer_details(astro_id: str):
 
-    utc_dt = birth_datetime_to_utc(
-        birth_date=data.birth_date,
-        birth_time=data.birth_time,
-        timezone_name=location["timezone_name"]
-    )
+    astro = get_astrologer(astro_id)
 
-    chart = calculate_birth_chart(
-        birth_datetime_utc=utc_dt,
-        latitude=location["latitude"],
-        longitude=location["longitude"]
-    )
+    if astro is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Astrologer not found"
+        )
 
-    return {
-        "success": True,
-        "name": data.name,
-        "chart": chart
-    }
+    return astro
