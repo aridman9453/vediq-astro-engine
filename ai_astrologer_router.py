@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from ai_astrologer_engine import ask_ai_astrologer
-from birth_chart import calculate_birth_chart
+from swisseph_service import generate_birth_chart as calculate_birth_chart
 from location_service import resolve_location, birth_datetime_to_utc
 
 router = APIRouter(
